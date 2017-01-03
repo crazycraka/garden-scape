@@ -1,0 +1,33 @@
+
+{{userProfileInfo}}
+
+<div class="service-one-wrapper">
+	<div class="service-one-container"></div>
+</div>
+
+<div class="service-two-wrapper">
+	<div class="service-two-container"></div>
+</div>
+
+<div class="service-three-wrapper">
+
+</div>
+
+<div ng-controller="serviceCtrl">
+	<div  ng-repeat="plan in planInfo">
+		<div class="service-info-wrapper">
+			<div class="service-info-container">
+				{{plan.servname}}<br>
+				{{plan.servsummary}}<br>
+				${{plan.servprice}}.00
+				---------------------------
+				
+				<button class='btn btn-primary' ng-click="addPlan(plan, userProfileInfo.id)">add {{plan.servname}} plan</button>
+			</div>
+		</div>
+
+	</div>
+
+
+</div>
+

@@ -1,0 +1,16 @@
+<!--<div ng-controller="listCustCtrl">{{test}} {{customers}}</div>-->
+<h1>wahoo, heres the super secret admin page!!!</h1>
+
+
+<input type="text" ng-model="filterCust">
+<div ng-repeat="customer in customers | filter: filterCust">
+	<div class="list-all-wrapper">
+		<div class="list-all-container">
+			First name: {{customer.fname}}
+			Last name: {{customer.lname}}
+			Address: {{customer.address}}
+			Email: {{customer.email}}
+		</div>
+	</div>
+</div>
+

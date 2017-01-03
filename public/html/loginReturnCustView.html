@@ -1,0 +1,21 @@
+
+
+<!--<div ng-controller="loginCtrl">-->
+	<div class="login-wrapper">
+		<div class="login-container">
+			<h2>Login</h2>
+			<input type="email" placeholder="email" ng-model="userEmail" required><br>
+			<input type="password" placeholder="password" ng-model="userPassword" required><br>
+			<button ng-click="returningCust(userEmail, userPassword)">Login</button>
+			<div>
+				<a ui-sref="loginNewCustView">Don't have an account yet? Register Here.</a><br>
+			</div>
+
+
+			<div ng-if="userInfo.data[0].admin">
+				heres a bunch of stuff in here
+			</div>
+		</div>
+	</div>
+<!--</div>-->
+

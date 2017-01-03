@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="gardenApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Garden Scape</title>
+
+
+	<link href="./dist/styles.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+<div ng-controller="headerCtrl">
+
+	<div class="header-wrapper">
+		<div class="header-container">
+			<div class="header-left-wrapper">
+				<h1>Garden Scape</h1>
+			</div>
+			{{greeting}}
+			<div class="header-right-wrapper">
+				<a ui-sref="homeView">Home</a> |
+				<a ui-sref="serviceView">Services</a> |
+				<a ui-sref="aboutView">About</a> |
+				<a ui-sref="loginReturnCustView">Login</a> |
+				<a ui-sref="profileEdit">Profile</a><br>
+				<a ui-sref="listCustView" >Customer List |</a>
+				<a ui-sref="routeView" >Route View</a>
+				<!--insert back into a tags for customer ilst and route view-->
+			<!--<div ng-if="userProfileInfo.admin"> wrap these tags around listCustView sref</div>-->
+			</div>
+		</div>
+	</div>
+</div>
+<div ui-view></div>
+
+
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=" + secretGoogleKey ></script>
+<script src="./dist/js/bundle.js"></script>
+</body>
+</html>

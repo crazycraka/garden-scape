@@ -1,0 +1,40 @@
+
+
+
+<div ng-show="!userProfileInfo">
+	<h1>hey there, you might find it more useful to be logged in first</h1>
+</div>
+
+<div ng-show="userProfileInfo">
+	<div class="profile-edit-wrapper">
+		<div class="profile-edit-container">
+			<div ng-if="userProfileInfo">
+				<div>First Name: {{userProfileInfo.fname}}</div>
+				<div>Last Name: {{userProfileInfo.lname}}</div>
+				<div>Address: {{userProfileInfo.address}}</div>
+				<div>Email: {{userProfileInfo.email}}</div>
+				<div>Password: {{userProfileInfo.password}}</div>
+				<div>Current Service Plan: {{userProfileInfo.currentservice}}</div>
+			</div>
+
+			<div ng-show="edit" class="edit-input">
+				<form action="profileEdit.html" autocomplete="on">
+					<input type="text" placeholder="{{userProfileInfo.fname}}"  ng-model="fname" required>
+					<input type="text" placeholder="{{userProfileInfo.lname}}" ng-model="lname" required>
+					<input type="text" placeholder="{{userProfileInfo.address}}" ng-model="address" required>
+					<input type="email" placeholder="{{userProfileInfo.email}}" ng-model="email" required>
+					<input type="password" placeholder="{{userProfileInfo.password}}" ng-model="password" required>
+					<input type="text" placeholder="{{userProfileInfo.currentservice}}" ng-model="currentservice" required>
+					<button ng-click="editProfile(fname, lname, address, email, password, userProfileInfo.id, currentservice)">save changes</button>
+				</form>
+			</div>
+
+			<div class="edit-button">
+				<input type="button" ng-click="edit = !edit" value="edit">
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<!--ng-click="userProfileInfo = !userProfileInfo"-->

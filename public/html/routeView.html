@@ -1,0 +1,42 @@
+<h1>this is the route view</h1>
+<div class="route-view">
+	<div class="route-list-wrapper">
+		<div class="route-list-container">
+			<!--<div ng-repeat="customer in customers">-->
+				<!--<div class="list-all-container">-->
+					<!--First name: {{customer.fname}}-->
+					<!--Last name: {{customer.lname}}-->
+					<!--Address: {{customer.address}}-->
+					<!--Email: {{customer.email}}-->
+				<!--</div>-->
+			<!--</div>-->
+		</div>
+	</div>
+
+	<div>
+		<h3>My Google Maps Demo</h3>
+		<!--<div id="map"></div>-->
+		<div class="day-selector-wrapper">
+			<div class="day-selector-container">
+				Monday<input type="checkbox"> <br>
+				Tuesday<input type="checkbox"> <br>
+				Wednesday<input type="checkbox"> <br>
+				Thursday <input type="checkbox"> <br>
+				Friday<input type="checkbox">
+			</div>
+		</div>
+
+		<!--query which tech you wish to select to filter for-->
+		<div class="tech-selector-wrapper">
+			<div class="tech-selector-container">
+				<input type="text" ng-model="techselect">{{techselect}}
+			</div>
+		</div>
+		<div class="map-wrapper">
+			<div class="map-container">
+				<div my-map=""></div>
+			</div>
+		</div>
+<!--directive for google maps, unsure how to make dynamically generated markers within directive-->
+	</div>
+</div>

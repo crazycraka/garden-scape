@@ -1,0 +1,11 @@
+
+.service-info-wrapper {
+    width: 80%;
+    height: 200px;
+    border: solid black;
+    margin: auto;
+}
+
+.service-info-container {
+    width: 80%;
+}
