@@ -30,7 +30,9 @@ var massiveInstance = massive.connectSync({connectionString: herokuPostgresURI})
 
 app.set('db', massiveInstance);
 var db = app.get('db');
-db.garden();
+db.garden(function(err, response) {
+    console.log('FIRED');
+});
 ////////////////////////
 // REQUIRED CONTROLLERS//
 ////////////////////////
