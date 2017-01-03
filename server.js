@@ -16,7 +16,6 @@ app.use(bodyParser.json());
 app.use(cors());
 // var config = require('./config.js');
 
-db.garden();
 
 var herokuPostgresURI = process.env.DATABASE_URL || config.herokuPostgresURI;
 var googleMapsKey =  process.env.GOOGLE_MAPS_KEY || config.secretGoogleKey;
@@ -31,6 +30,7 @@ var massiveInstance = massive.connectSync({connectionString: herokuPostgresURI})
 
 app.set('db', massiveInstance);
 var db = app.get('db');
+db.garden();
 ////////////////////////
 // REQUIRED CONTROLLERS//
 ////////////////////////
