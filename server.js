@@ -14,9 +14,10 @@ var middleware = require('middleware');
 var port = 3000;
 app.use(bodyParser.json());
 app.use(cors());
-var config = require('./config.js');
+// var config = require('./config.js');
 
-
+var herokuPostgresURI = config.herokuPostgresURI || process.env.DATABASE_URL;
+var googleMapsKey = config.secretGoogleKey || process.env.GOOGLE_MAPS_KEY;
 // app.use(session({
 //     secret: config.secret,
 //     saveUninitialized: false,
@@ -24,7 +25,7 @@ var config = require('./config.js');
 // }));
 app.use(express.static( __dirname + '/public'));
 app.use('/dist',express.static(__dirname + '/../dist'));
-var massiveInstance = massive.connectSync({connectionString: config.herokuPostgresURI});
+var massiveInstance = massive.connectSync({connectionString: herokuPostgresURI});
 
 app.set('db', massiveInstance);
 var db = app.get('db');
