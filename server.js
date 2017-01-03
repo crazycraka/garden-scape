@@ -14,6 +14,7 @@ var middleware = require('middleware');
 var port = 3000;
 app.use(bodyParser.json());
 app.use(cors());
+var config = require('./config.js');
 
 
 // app.use(session({
@@ -23,7 +24,7 @@ app.use(cors());
 // }));
 app.use(express.static( __dirname + '/public'));
 app.use('/dist',express.static(__dirname + '/../dist'));
-var massiveInstance = massive.connectSync({connectionString: 'postgres://localhost/garden'});
+var massiveInstance = massive.connectSync({connectionString: config.herokuPostgresURI});
 
 app.set('db', massiveInstance);
 var db = app.get('db');
