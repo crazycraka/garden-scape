@@ -16,8 +16,8 @@ app.use(bodyParser.json());
 app.use(cors());
 // var config = require('./config.js');
 
-var herokuPostgresURI = config.herokuPostgresURI || process.env.DATABASE_URL;
-var googleMapsKey = config.secretGoogleKey || process.env.GOOGLE_MAPS_KEY;
+var herokuPostgresURI = process.env.DATABASE_URL || config.herokuPostgresURI;
+var googleMapsKey =  process.env.GOOGLE_MAPS_KEY || config.secretGoogleKey;
 // app.use(session({
 //     secret: config.secret,
 //     saveUninitialized: false,
