@@ -78,16 +78,36 @@ gardenApp.controller('listCustCtrl', function ($scope, $http) {
             method: 'GET',
             url: '/listall'
         }).then(function (response) {
-            $scope.customers = response.data;
+            $scope.originalCustList = response.data;
         });
     };
     getUsers();
 
-    // $scope.$watch('customers', function(){
-    //     // console.log($scope.customers);
-    //     alert($scope.customers);
-    // });
+    $scope.$watch('customers', function () {
+        console.log('$scope.customers', $scope.customers);
+    });
 
+    $scope.routeFilter = function (day) {
+
+        var selectedDayString = [];
+        alert('hey this worked');
+        console.log(day);
+        for (var key in day) {
+            console.log(key);
+            selectedDayString.push(key);
+        }
+
+        console.log('selectedDayString', selectedDayString);
+
+        $scope.customers = $scope.originalCustList.filter(function (currentVal, index, arr) {
+            console.log('currentVal.serviceday', currentVal.serviceday === selectedDayString);
+            console.log(selectedDayString);
+            if (selectedDayString[0] === currentVal.serviceday) {
+                console.log(currentVal);
+                return currentVal;
+            }
+        });
+    };
 
     //      $scope.initMap = function initMap() {
     // //                var headQuarters = {lat: -25.363, lng: 131.044};
@@ -238,7 +258,7 @@ gardenApp.controller('serviceCtrl', function ($scope, serviceSrv) {
 gardenApp.directive('myMap', function () {
     // directive link function
     var link = function link(scope, element, attrs) {
-        console.log('myMap directive scope ', scope);
+        // console.log('myMap directive scope ' , scope);
         var map, infoWindow;
         var markers = [];
         // map config

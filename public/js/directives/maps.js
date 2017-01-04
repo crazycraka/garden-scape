@@ -5,7 +5,7 @@
 gardenApp.directive('myMap', function() {
     // directive link function
     var link = function(scope, element, attrs) {
-        console.log('myMap directive scope ' , scope);
+        // console.log('myMap directive scope ' , scope);
         var map, infoWindow;
         var markers = [];
         // map config
@@ -75,7 +75,7 @@ gardenApp.directive('myMap', function() {
                 for(var i = 0; i < scope.customers.length; i++){
                     //addres and customerSummary need to use ES6 let, instead of var, for infoWindows to have dynamic content, unkown reasons
                     let address = {"address": scope.customers[i].address };
-                    let customerSummary = scope.customers[i].fname + " " + scope.customers[i].lname + " service: " + scope.customers[i].currentservice;
+                    let customerSummary = scope.customers[i].fname + " " + scope.customers[i].lname + " service: " + scope.customers[i].currentservice ;
                     // console.log();
                     geocoder.geocode( address, function(results, status){
                         scope.results = results;

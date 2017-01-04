@@ -18,11 +18,11 @@
 		<!--<div id="map"></div>-->
 		<div class="day-selector-wrapper">
 			<div class="day-selector-container">
-				Monday<input type="checkbox"> <br>
-				Tuesday<input type="checkbox"> <br>
-				Wednesday<input type="checkbox"> <br>
-				Thursday <input type="checkbox"> <br>
-				Friday<input type="checkbox">
+				Monday<input type="checkbox" ng-model="day.monday"> <br>
+				Tuesday<input type="checkbox" ng-model="day.tuesday"> <br>
+				Wednesday<input type="checkbox" ng-model="day.wednesday"> <br>
+				Thursday <input type="checkbox" ng-model="day.thursday"> <br>
+				Friday<input type="checkbox" ng-model="day.friday">
 			</div>
 		</div>
 
@@ -32,6 +32,7 @@
 				<input type="text" ng-model="techselect">{{techselect}}
 			</div>
 		</div>
+		<div class="btn btn-primary" ng-click="routeFilter(day)">submit route filters</div>
 		<div class="map-wrapper">
 			<div class="map-container">
 				<div my-map=""></div>

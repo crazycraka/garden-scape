@@ -1,20 +1,44 @@
 gardenApp.controller('listCustCtrl', function($scope, $http){
 
     $scope.test = 'listCustCtrl is working';
-    var getUsers = function(){
+    let getUsers = function(){
         $http({
             method: 'GET',
             url: '/listall'
         }).then(function(response){
-            $scope.customers = response.data;
+            $scope.originalCustList = response.data;
         })
     };
     getUsers();
 
-    // $scope.$watch('customers', function(){
-    //     // console.log($scope.customers);
-    //     alert($scope.customers);
-    // });
+    $scope.$watch('customers', function(){
+       console.log('$scope.customers', $scope.customers);
+    });
+
+    $scope.routeFilter = (day) => {
+
+        let selectedDayString = [];
+        alert('hey this worked');
+        console.log(day);
+        for ( let key in day){
+            console.log(key);
+            selectedDayString.push(key);
+
+        }
+
+        console.log('selectedDayString', selectedDayString);
+
+        $scope.customers = $scope.originalCustList.filter(function(currentVal, index, arr){
+            console.log('currentVal.serviceday', currentVal.serviceday === selectedDayString);
+            console.log(selectedDayString);
+            if(selectedDayString[0] === currentVal.serviceday){
+                console.log(currentVal);
+                return currentVal;
+            }
+        })
+
+
+    };
 
 
 

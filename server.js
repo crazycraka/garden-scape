@@ -14,11 +14,12 @@ var middleware = require('middleware');
 var port = 3000;
 app.use(bodyParser.json());
 app.use(cors());
-// var config = require('./config.js');
+var config = require('./config.js');
 
 
 var herokuPostgresURI = process.env.DATABASE_URL || config.herokuPostgresURI;
 var googleMapsKey =  process.env.GOOGLE_MAPS_KEY || config.secretGoogleKey;
+
 // app.use(session({
 //     secret: config.secret,
 //     saveUninitialized: false,
@@ -26,13 +27,13 @@ var googleMapsKey =  process.env.GOOGLE_MAPS_KEY || config.secretGoogleKey;
 // }));
 app.use(express.static( __dirname + '/public'));
 app.use('/dist',express.static(__dirname + '/../dist'));
-var massiveInstance = massive.connectSync({connectionString: herokuPostgresURI});
+
+//when saving to heroku, make sure to change connectionString value to herokuPostgresURI
+var massiveInstance = massive.connectSync({connectionString: 'postgres://localhost/garden'});
 
 app.set('db', massiveInstance);
 var db = app.get('db');
-db.garden(function(err, response) {
-    console.log('FIRED');
-});
+
 ////////////////////////
 // REQUIRED CONTROLLERS//
 ////////////////////////
