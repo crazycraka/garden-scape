@@ -394,24 +394,6 @@ gardenApp.directive('myMap', function () {
 });
 'use strict';
 
-gardenApp.factory('userInfoFact', function () {
-
-    var userObject = {};
-
-    var addCurrentUser = function addCurrentUser(userData) {
-        userObject = userData;
-    };
-    var returnCurrentUser = function returnCurrentUser() {
-        return userObject;
-    };
-
-    return {
-        addCurrentUser: addCurrentUser,
-        returnCurrentUser: returnCurrentUser
-    };
-});
-'use strict';
-
 gardenApp.service('loginServ', function ($http) {
 
     this.newCust = function (fname, lname, address, email, password) {
@@ -528,6 +510,24 @@ gardenApp.service('serviceSrv', function ($http) {
         }).catch(function (err) {
             alert(err);
         });
+    };
+});
+'use strict';
+
+gardenApp.factory('userInfoFact', function () {
+
+    var userObject = {};
+
+    var addCurrentUser = function addCurrentUser(userData) {
+        userObject = userData;
+    };
+    var returnCurrentUser = function returnCurrentUser() {
+        return userObject;
+    };
+
+    return {
+        addCurrentUser: addCurrentUser,
+        returnCurrentUser: returnCurrentUser
     };
 });
 //# sourceMappingURL=bundle.js.map

@@ -28,8 +28,8 @@ var googleMapsKey =  process.env.GOOGLE_MAPS_KEY || config.secretGoogleKey;
 app.use(express.static( __dirname + '/public'));
 app.use('/dist',express.static(__dirname + '/../dist'));
 
-//when saving to heroku, make sure to change connectionString value to herokuPostgresURI
-var massiveInstance = massive.connectSync({connectionString: 'postgres://localhost/garden'});
+//when saving to heroku, make sure to change connectionString value to 'postgres://localhost/garden'
+var massiveInstance = massive.connectSync({connectionString: herokuPostgresURI});
 
 app.set('db', massiveInstance);
 var db = app.get('db');
