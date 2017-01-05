@@ -45,6 +45,7 @@ gardenApp.service('loginServ', function($http){
     this.editEmail;
     this.editPassword;
     this.editCurrentService;
+
     this.editProfile = function(fname, lname, address, email, password, id, currentservice){
         this.editFirstName = fname;
         this.editLastName = lname;

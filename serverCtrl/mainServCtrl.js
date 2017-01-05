@@ -1,5 +1,5 @@
-var app = require('../server.js');
-var db = app.get('db');
+let app = require('../server.js');
+let db = app.get('db');
 
 
 module.exports = {
@@ -14,7 +14,7 @@ module.exports = {
 
     },
     newCust: function(req, res){
-        var cust = req.body;
+        let cust = req.body;
         db.newCust([ cust.fname, cust.lname, cust.address, cust.email, cust.password], function(err, newCustomer){
             if(err){
                 res.send(err)
@@ -24,7 +24,7 @@ module.exports = {
         })
     },
     returningCust: function(req, res){
-        var cust = req.body;
+        let cust = req.body;
         db.returningCust([cust.userEmail, cust.userPassword], function(err, userData){
             if(err){
                 res.send(err)
@@ -34,7 +34,7 @@ module.exports = {
         })
     },
     editProfile: function(req, res){
-        var cust = req.body;
+        let cust = req.body;
         db.editProfile( [cust.fname, cust.lname, cust.address, cust.email, cust.password, cust.id, cust.currentservice], function(err, updatedProfile){
             if(err){
                 res.send(err)
@@ -59,6 +59,16 @@ module.exports = {
                 res.send(err)
             } else {
                 res.send(addPlan)
+            }
+        })
+    },
+    serviceStatus: function(req, res){
+        let cust = req.body;
+        db.serviceStatus( [ cust.customerid, cust.customernote, cust.servicestatus] , function(err, serviceStatus){
+            if(err){
+                res.send(err)
+            } else {
+                res.send(serviceStatus)
             }
         })
     }

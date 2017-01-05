@@ -1,10 +1,12 @@
 
 .list-all-wrapper {
     width: 90%;
-    height: 50px;
+    min-height: 70px;
+    height: auto;
     background-color: cadetblue;
     margin: 5px;
     border: solid black;
+    padding: 10px;
 }
 
 .list-all-container {

@@ -1,0 +1,166 @@
+
+.route-view{
+    padding: 10px;
+    margin: 10px;
+}
+
+.filter-wrapper {
+    width: 100%;
+    float: left;
+    z-index: 1000;
+}
+
+.filter-container {
+}
+
+.day-selector-wrapper {
+}
+
+.day-selector-container {
+}
+
+.tech-selector-wrapper {
+    display: flex;
+}
+
+.tech-selector-container {
+    display: flex;
+}
+
+.route-list-wrapper {
+
+}
+
+.route-list-container {
+
+}
+
+.list-route-wrapper {
+    /*margin: 10px;*/
+    /*border: 2px solid black;*/
+    /*min-width: 350px;*/
+    /*max-width: 48%;*/
+    /*height: auto;*/
+    display: flex;
+    justify-content: space-between;
+    /*float: right;*/
+    /*background-color: dimgray;*/
+    width: 48%;
+    min-width: 350px;
+    min-height: 50px;
+    height: auto;
+    background-color: cadetblue;
+    margin: 5px;
+    border: solid black;
+    padding: 10px;
+    float: right;
+}
+
+.list-route-container {
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+
+}
+
+.service-note {
+    width: 250px;
+    height: 50px;
+}
+
+.list-buttons-wrapper {
+    display: flex;
+    float: right;
+    margin-right: 0;
+    overflow: auto;
+}
+
+.list-button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 5px;
+    overflow: auto;
+}
+
+.map-wrapper {
+    float: left;
+    border: 2px solid black;
+    margin-top: 10px;
+    width: 50%;
+    height: 50vw;
+    min-width: 304px;
+    min-height: 50.7vw;
+}
+
+.map-container {
+    min-width: 300px;
+    min-height: 300px;
+    width: 100%;
+    height: 50vw;
+
+}
+
+.map-literal {
+    min-width: 300px;
+    min-height: 300px;
+    width: 100%;
+    height: 100%;
+
+}
+
+.service-button {
+    margin: 10px;
+}
+
+
+/*/////////////////*/
+/*//media queries//*/
+/*/////////////////*/
+@media (max-width: 1200px) {
+    .list-route-wrapper {
+        background-color: #55c053;
+        margin: auto;
+        width: 100%;
+    }
+
+    .route-list-wrapper {
+        margin: auto;
+        width: 90%;
+
+    }
+
+    .route-list-container {
+        width: 100%;
+        height: 100%;
+    }
+
+    .route-list-repeat {
+        width: 100%;
+    }
+
+
+    .map-wrapper {
+        width: 90%;
+        clear: both;
+        margin: 10px;
+
+    }
+}
+
+
+
+/*/////////////////*/
+/*//animations//*/
+/*/////////////////*/
+
+.animate-show-hide.ng-hide {
+    opacity: 0;
+}
+
+.animate-show-hide.ng-hide-add,
+.animate-show-hide.ng-hide-remove {
+    transition: all linear 0.5s;
+}

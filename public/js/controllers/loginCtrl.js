@@ -4,8 +4,7 @@ gardenApp.controller('loginCtrl', function($scope, $http, loginServ, $rootScope,
     $scope.newCust = function (fname, lname, address, email, password) {
         if(fname && lname && address && email && password) {
             loginServ.newCust(fname, lname, address, email, password)
-                .then(function (response) {
-                });
+                .then(function (response) {});
         }
         else {
             alert('sorry, please fill in all fields, their all actually pretty important');

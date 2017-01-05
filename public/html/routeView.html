@@ -1,43 +1,56 @@
-<h1>this is the route view</h1>
 <div class="route-view">
-	<div class="route-list-wrapper">
-		<div class="route-list-container">
-			<!--<div ng-repeat="customer in customers">-->
-				<!--<div class="list-all-container">-->
-					<!--First name: {{customer.fname}}-->
-					<!--Last name: {{customer.lname}}-->
-					<!--Address: {{customer.address}}-->
-					<!--Email: {{customer.email}}-->
-				<!--</div>-->
-			<!--</div>-->
-		</div>
-	</div>
+		<a href ng-click="filterselector = !filterselector"><div class="btn btn-primary glyphicon glyphicon-th-list"></div></a>
+		<div class="filter-sidebar animate-show-hide" ng-show="filterselector">
+			<div class="filter-wrapper">
+				<div class="filter-container">
+					<div class="day-selector-wrapper">
+						<div class="day-selector-container">
+							Monday<input type="checkbox" ng-model="day.monday">
+							Tuesday<input type="checkbox" ng-model="day.tuesday">
+							Wednesday<input type="checkbox" ng-model="day.wednesday">
+							Thursday <input type="checkbox" ng-model="day.thursday">
+							Friday<input type="checkbox" ng-model="day.friday">
+						</div>
+					</div>
 
-	<div>
-		<h3>My Google Maps Demo</h3>
-		<!--<div id="map"></div>-->
-		<div class="day-selector-wrapper">
-			<div class="day-selector-container">
-				Monday<input type="checkbox" ng-model="day.monday"> <br>
-				Tuesday<input type="checkbox" ng-model="day.tuesday"> <br>
-				Wednesday<input type="checkbox" ng-model="day.wednesday"> <br>
-				Thursday <input type="checkbox" ng-model="day.thursday"> <br>
-				Friday<input type="checkbox" ng-model="day.friday">
+					<!--query which tech you wish to select to filter for-->
+					<div class="tech-selector-wrapper">
+						<div class="tech-selector-container">
+							<input type="text" ng-model="techselect">{{techselect}}
+						</div>
+						<div class="btn btn-primary" ng-click="routeFilter(day, techselect)">submit route filters</div>
+					</div>
+				</div>
 			</div>
 		</div>
 
-		<!--query which tech you wish to select to filter for-->
-		<div class="tech-selector-wrapper">
-			<div class="tech-selector-container">
-				<input type="text" ng-model="techselect">{{techselect}}
-			</div>
-		</div>
-		<div class="btn btn-primary" ng-click="routeFilter(day)">submit route filters</div>
 		<div class="map-wrapper">
 			<div class="map-container">
-				<div my-map=""></div>
+				<div my-map="" class="map-literal"></div>
 			</div>
 		</div>
-<!--directive for google maps, unsure how to make dynamically generated markers within directive-->
-	</div>
+		<div class="route-list-wrapper">
+			<div class="route-list-container">
+				<div ng-repeat="customer in customers" class="route-list-repeat">
+					<div class="list-route-wrapper">
+						<div class="list-route-container">
+							First name: {{customer.fname}} {{customer.lname}}<br>
+							Address: {{customer.address}}<br>
+							Email: {{customer.email}}<br>
+							<div class="note-input" ng-show="noteBox">
+								<textarea class="service-note" ng-model="customer.note"></textarea>
+							</div>
+						</div>
+						<div class="list-buttons-wrapper">
+							<div class="list-button-container">
+								<div ng-click="serviceComplete(customer)" class="glyphicon glyphicon-ok service-complete service-button"></div>
+								<div ng-click="serviceIncomplete(customer)" class="glyphicon glyphicon-remove service-incomplete service-button"></div>
+								<div ng-click="noteBox = !noteBox" class="glyphicon glyphicon-pencil service-notes service-button"></div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
 </div>

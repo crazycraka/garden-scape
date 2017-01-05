@@ -13,7 +13,7 @@ gardenApp.directive('myMap', function() {
             center: new google.maps.LatLng(40.227453, -111.659166),
             zoom: 10,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
-            scrollwheel: true
+            scrollwheel: false
         };
         // init the map
         function initMap() {

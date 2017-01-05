@@ -1,7 +1,6 @@
-gardenApp.controller('listCustCtrl', function($scope, $http){
+gardenApp.controller('listCustCtrl', function($scope, $http, listCustServ){
 
-    $scope.test = 'listCustCtrl is working';
-    let getUsers = function(){
+    let getUsers = () => {
         $http({
             method: 'GET',
             url: '/listall'
@@ -15,32 +14,54 @@ gardenApp.controller('listCustCtrl', function($scope, $http){
        console.log('$scope.customers', $scope.customers);
     });
 
-    $scope.routeFilter = (day) => {
+    $scope.routeFilter = (day, techselect) => {
 
         let selectedDayString = [];
-        alert('hey this worked');
         console.log(day);
         for ( let key in day){
-            console.log(key);
             selectedDayString.push(key);
-
         }
 
-        console.log('selectedDayString', selectedDayString);
-
         $scope.customers = $scope.originalCustList.filter(function(currentVal, index, arr){
-            console.log('currentVal.serviceday', currentVal.serviceday === selectedDayString);
-            console.log(selectedDayString);
-            if(selectedDayString[0] === currentVal.serviceday){
-                console.log(currentVal);
-                return currentVal;
+            if(day && techselect){
+                if(selectedDayString[0] === currentVal.serviceday && techselect === currentVal.assignedtech ){
+                    return currentVal;
+                }
             }
-        })
-
-
+            else if (day) {
+                if(selectedDayString[0] === currentVal.serviceday){
+                    return currentVal;
+                }
+            }
+            else if (techselect) {
+                if(techselect === currentVal.assignedtech){
+                    return currentVal;
+                }
+            }
+        });
     };
 
+    $scope.serviceComplete = function(customer){
+        customer.servicestatus = 'complete';
+        console.log('serviceComplete', customer);
+        if(!customer.note){
+            alert('oops, leave a little note please');
+        }
+        else if(customer.note){
+            listCustServ.serviceStatus(customer);
+        }
+    };
 
+    $scope.serviceIncomplete = function(customer){
+        customer.servicestatus = 'incomplete';
+        console.log('serviceIncomplete', customer);
+        if(!customer.note){
+            alert('oops, leave a little note please');
+        }
+        if(customer.note){
+            listCustServ.serviceStatus(customer);
+        }
+    };
 
 
 //      $scope.initMap = function initMap() {

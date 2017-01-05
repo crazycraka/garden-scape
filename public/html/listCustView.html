@@ -3,13 +3,14 @@
 
 
 <input type="text" ng-model="filterCust">
-<div ng-repeat="customer in customers | filter: filterCust">
+<div ng-repeat="customer in originalCustList | filter: filterCust">
 	<div class="list-all-wrapper">
 		<div class="list-all-container">
 			First name: {{customer.fname}}
 			Last name: {{customer.lname}}
 			Address: {{customer.address}}
 			Email: {{customer.email}}
+			Service: {{customer.currentservice}}
 		</div>
 	</div>
 </div>

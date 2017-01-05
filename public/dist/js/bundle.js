@@ -39,218 +39,6 @@ gardenApp.config(function ($stateProvider, $urlRouterProvider) {
 });
 'use strict';
 
-gardenApp.controller('custAccountCtrl', function ($scope) {
-
-    $scope.test = 'custAccountCtrl is working';
-});
-'use strict';
-
-gardenApp.controller('dailyRouteCtrl', function ($scope) {
-
-    $scope.test = 'dailyRouteCtrl is working';
-});
-'use strict';
-
-gardenApp.controller('gMapsCtrl', function ($scope) {
-
-    $scope.test = 'gMapsCtrl is working';
-});
-'use strict';
-
-gardenApp.controller('headerCtrl', function ($scope, $http, $rootScope, userInfoFact) {
-
-    $rootScope.$on('userLoggedIn', function () {
-        var link = 'welcome ' + userInfoFact.returnCurrentUser().fname;
-        $scope.greeting = link;
-        $rootScope.userProfileInfo = userInfoFact.returnCurrentUser();
-    });
-});
-
-// userInfoFact.returnCurrentUser().fname
-"use strict";
-'use strict';
-
-gardenApp.controller('listCustCtrl', function ($scope, $http) {
-
-    $scope.test = 'listCustCtrl is working';
-    var getUsers = function getUsers() {
-        $http({
-            method: 'GET',
-            url: '/listall'
-        }).then(function (response) {
-            $scope.originalCustList = response.data;
-        });
-    };
-    getUsers();
-
-    $scope.$watch('customers', function () {
-        console.log('$scope.customers', $scope.customers);
-    });
-
-    $scope.routeFilter = function (day) {
-
-        var selectedDayString = [];
-        alert('hey this worked');
-        console.log(day);
-        for (var key in day) {
-            console.log(key);
-            selectedDayString.push(key);
-        }
-
-        console.log('selectedDayString', selectedDayString);
-
-        $scope.customers = $scope.originalCustList.filter(function (currentVal, index, arr) {
-            console.log('currentVal.serviceday', currentVal.serviceday === selectedDayString);
-            console.log(selectedDayString);
-            if (selectedDayString[0] === currentVal.serviceday) {
-                console.log(currentVal);
-                return currentVal;
-            }
-        });
-    };
-
-    //      $scope.initMap = function initMap() {
-    // //                var headQuarters = {lat: -25.363, lng: 131.044};
-    //
-    //         $scope.map = new google.maps.Map(document.getElementById('map'), {
-    //             zoom: 11,
-    //             mapTypeId: 'roadmap'
-    //         });
-    //         console.log($scope.customers);
-    //         // for(var i = 0; i < $scope.customers.length; i++){
-    //         //     var marker = new google.maps.Marker({
-    //         //         position: { lat: 40.24, lng: -111.65 },
-    //         //         map: $scope.map
-    //         //     });
-    //         // }
-    //         var marker = new google.maps.Marker({
-    //            position: { lat: 40.3, lng: -111.5},
-    //            map: $scope.map
-    //         });
-    //
-    //         $scope.infoWindow = new google.maps.InfoWindow({map: $scope.map});
-    //         function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-    //            infoWindow.setPosition(pos);
-    //            infoWindow.setContent(browserHasGeolocation ?
-    //                 'Error: The Geolocation service failed.' :
-    //                 'Error: Your browser doesn\'t support geolocation.');
-    //         }
-    //
-    //         // Try HTML5 geolocation.
-    //         if (navigator.geolocation) {
-    //             navigator.geolocation.getCurrentPosition(function(position) {
-    //                 $scope.pos = {
-    //                     lat: position.coords.latitude,
-    //                     lng: position.coords.longitude
-    //                 };
-    //                 $scope.currentPosition = new google.maps.Marker({
-    //                     position: $scope.pos,
-    //                     map: $scope.map
-    //                 });
-    //
-    //                 $scope.infoWindow.setPosition($scope.pos);
-    //                 $scope.infoWindow.setContent('Location found.');
-    //                 $scope.map.setCenter($scope.pos);
-    //             }, function() {
-    //                 handleLocationError(true, $scope.infoWindow, $scope.map.getCenter());
-    //             });
-    //         } else {
-    //             // Browser doesn't support Geolocation
-    //             handleLocationError(false, $scope.infoWindow, $scope.map.getCenter());
-    //         }
-    //
-    //
-    //     };
-
-    // $scope.initMap();
-});
-'use strict';
-
-gardenApp.controller('loginCtrl', function ($scope, $http, loginServ, $rootScope, userInfoFact) {
-
-    $scope.newCust = function (fname, lname, address, email, password) {
-        if (fname && lname && address && email && password) {
-            loginServ.newCust(fname, lname, address, email, password).then(function (response) {});
-        } else {
-            alert('sorry, please fill in all fields, their all actually pretty important');
-        }
-        $scope.fname = '';
-        $scope.lname = '';
-        $scope.address = '';
-        $scope.email = '';
-        $scope.password = '';
-        $scope.currentservice = '';
-    };
-
-    $scope.returningCust = function (userEmail, userPassword) {
-        if (userEmail && userPassword) {
-            loginServ.returningCust(userEmail, userPassword).then(function (response) {
-                $scope.userInfo = response;
-                console.log('in returningCust loginCtrl, response[0]', response[0]);
-                userInfoFact.addCurrentUser(response[0]);
-                $rootScope.$broadcast('userLoggedIn');
-            });
-        } else {
-            alert('sorry, to validate login you need a email and a password entry');
-        }
-        $scope.userEmail = '';
-        $scope.userPassword = '';
-    };
-
-    $scope.editProfile = function (fname, lname, address, email, password, id, currentservice) {
-        if (fname && lname && address && email && password && currentservice) {
-            loginServ.editProfile(fname, lname, address, email, password, id, currentservice).then(function (response) {
-                $scope.userProfileInfo.fname = loginServ.editFirstName;
-                $scope.userProfileInfo.lname = loginServ.editLastName;
-                $scope.userProfileInfo.address = loginServ.editAddress;
-                $scope.userProfileInfo.email = loginServ.editEmail;
-                $scope.userProfileInfo.password = loginServ.editPassword;
-                $scope.userProfileInfo.currentservice = loginServ.editCurrentService;
-            });
-        } else {
-            alert('sorry, please fill in all fields, to update your profile all fields need to be filled in');
-        }
-        $scope.fname = '';
-        $scope.lname = '';
-        $scope.address = '';
-        $scope.email = '';
-        $scope.password = '';
-        $scope.currentservice = '';
-    };
-});
-"use strict";
-
-gardenApp.controller;
-'use strict';
-
-gardenApp.controller('serviceCtrl', function ($scope, serviceSrv) {
-
-    if ($scope.userProfileInfo) {
-        var email = $scope.userProfileInfo.email;
-        var password = $scope.userProfileInfo.password;
-    }
-
-    $scope.addPlan = function (selectedPlan, userId) {
-        alert('you selected the ' + selectedPlan.servname + ' plan, it will be added to your account');
-        serviceSrv.addPlan(selectedPlan.id, userId).then(function (response) {
-            return response;
-        });
-        serviceSrv.refreshUserInfo(email, password).then(function (response) {
-            $scope.userProfileInfo.currentservice = response[0].currentservice;
-            return response;
-        });
-    };
-
-    $scope.getInfo = function () {
-        serviceSrv.planInfo().then(function (response) {
-            $scope.planInfo = response;
-        });
-    };
-
-    $scope.getInfo();
-});
-'use strict';
-
 /**
  * Created by scott on 1/1/17.
  */
@@ -266,7 +54,7 @@ gardenApp.directive('myMap', function () {
             center: new google.maps.LatLng(40.227453, -111.659166),
             zoom: 10,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
-            scrollwheel: true
+            scrollwheel: false
         };
         // init the map
         function initMap() {
@@ -394,6 +182,277 @@ gardenApp.directive('myMap', function () {
 });
 'use strict';
 
+gardenApp.controller('custAccountCtrl', function ($scope) {
+
+    $scope.test = 'custAccountCtrl is working';
+});
+'use strict';
+
+gardenApp.controller('dailyRouteCtrl', function ($scope) {
+
+    $scope.test = 'dailyRouteCtrl is working';
+});
+'use strict';
+
+gardenApp.controller('gMapsCtrl', function ($scope) {
+
+    $scope.test = 'gMapsCtrl is working';
+});
+'use strict';
+
+gardenApp.controller('headerCtrl', function ($scope, $http, $rootScope, userInfoFact) {
+
+    $rootScope.$on('userLoggedIn', function () {
+        var link = 'welcome ' + userInfoFact.returnCurrentUser().fname;
+        $scope.greeting = link;
+        $rootScope.userProfileInfo = userInfoFact.returnCurrentUser();
+    });
+});
+
+// userInfoFact.returnCurrentUser().fname
+"use strict";
+'use strict';
+
+gardenApp.controller('listCustCtrl', function ($scope, $http, listCustServ) {
+
+    var getUsers = function getUsers() {
+        $http({
+            method: 'GET',
+            url: '/listall'
+        }).then(function (response) {
+            $scope.originalCustList = response.data;
+        });
+    };
+    getUsers();
+
+    $scope.$watch('customers', function () {
+        console.log('$scope.customers', $scope.customers);
+    });
+
+    $scope.routeFilter = function (day, techselect) {
+
+        var selectedDayString = [];
+        console.log(day);
+        for (var key in day) {
+            selectedDayString.push(key);
+        }
+
+        $scope.customers = $scope.originalCustList.filter(function (currentVal, index, arr) {
+            if (day && techselect) {
+                if (selectedDayString[0] === currentVal.serviceday && techselect === currentVal.assignedtech) {
+                    return currentVal;
+                }
+            } else if (day) {
+                if (selectedDayString[0] === currentVal.serviceday) {
+                    return currentVal;
+                }
+            } else if (techselect) {
+                if (techselect === currentVal.assignedtech) {
+                    return currentVal;
+                }
+            }
+        });
+    };
+
+    $scope.serviceComplete = function (customer) {
+        customer.servicestatus = 'complete';
+        console.log('serviceComplete', customer);
+        if (!customer.note) {
+            alert('oops, leave a little note please');
+        } else if (customer.note) {
+            listCustServ.serviceStatus(customer);
+        }
+    };
+
+    $scope.serviceIncomplete = function (customer) {
+        customer.servicestatus = 'incomplete';
+        console.log('serviceIncomplete', customer);
+        if (!customer.note) {
+            alert('oops, leave a little note please');
+        }
+        if (customer.note) {
+            listCustServ.serviceStatus(customer);
+        }
+    };
+
+    //      $scope.initMap = function initMap() {
+    // //                var headQuarters = {lat: -25.363, lng: 131.044};
+    //
+    //         $scope.map = new google.maps.Map(document.getElementById('map'), {
+    //             zoom: 11,
+    //             mapTypeId: 'roadmap'
+    //         });
+    //         console.log($scope.customers);
+    //         // for(var i = 0; i < $scope.customers.length; i++){
+    //         //     var marker = new google.maps.Marker({
+    //         //         position: { lat: 40.24, lng: -111.65 },
+    //         //         map: $scope.map
+    //         //     });
+    //         // }
+    //         var marker = new google.maps.Marker({
+    //            position: { lat: 40.3, lng: -111.5},
+    //            map: $scope.map
+    //         });
+    //
+    //         $scope.infoWindow = new google.maps.InfoWindow({map: $scope.map});
+    //         function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+    //            infoWindow.setPosition(pos);
+    //            infoWindow.setContent(browserHasGeolocation ?
+    //                 'Error: The Geolocation service failed.' :
+    //                 'Error: Your browser doesn\'t support geolocation.');
+    //         }
+    //
+    //         // Try HTML5 geolocation.
+    //         if (navigator.geolocation) {
+    //             navigator.geolocation.getCurrentPosition(function(position) {
+    //                 $scope.pos = {
+    //                     lat: position.coords.latitude,
+    //                     lng: position.coords.longitude
+    //                 };
+    //                 $scope.currentPosition = new google.maps.Marker({
+    //                     position: $scope.pos,
+    //                     map: $scope.map
+    //                 });
+    //
+    //                 $scope.infoWindow.setPosition($scope.pos);
+    //                 $scope.infoWindow.setContent('Location found.');
+    //                 $scope.map.setCenter($scope.pos);
+    //             }, function() {
+    //                 handleLocationError(true, $scope.infoWindow, $scope.map.getCenter());
+    //             });
+    //         } else {
+    //             // Browser doesn't support Geolocation
+    //             handleLocationError(false, $scope.infoWindow, $scope.map.getCenter());
+    //         }
+    //
+    //
+    //     };
+
+    // $scope.initMap();
+});
+'use strict';
+
+gardenApp.controller('loginCtrl', function ($scope, $http, loginServ, $rootScope, userInfoFact) {
+
+    $scope.newCust = function (fname, lname, address, email, password) {
+        if (fname && lname && address && email && password) {
+            loginServ.newCust(fname, lname, address, email, password).then(function (response) {});
+        } else {
+            alert('sorry, please fill in all fields, their all actually pretty important');
+        }
+        $scope.fname = '';
+        $scope.lname = '';
+        $scope.address = '';
+        $scope.email = '';
+        $scope.password = '';
+        $scope.currentservice = '';
+    };
+
+    $scope.returningCust = function (userEmail, userPassword) {
+        if (userEmail && userPassword) {
+            loginServ.returningCust(userEmail, userPassword).then(function (response) {
+                $scope.userInfo = response;
+                console.log('in returningCust loginCtrl, response[0]', response[0]);
+                userInfoFact.addCurrentUser(response[0]);
+                $rootScope.$broadcast('userLoggedIn');
+            });
+        } else {
+            alert('sorry, to validate login you need a email and a password entry');
+        }
+        $scope.userEmail = '';
+        $scope.userPassword = '';
+    };
+
+    $scope.editProfile = function (fname, lname, address, email, password, id, currentservice) {
+        if (fname && lname && address && email && password && currentservice) {
+            loginServ.editProfile(fname, lname, address, email, password, id, currentservice).then(function (response) {
+                $scope.userProfileInfo.fname = loginServ.editFirstName;
+                $scope.userProfileInfo.lname = loginServ.editLastName;
+                $scope.userProfileInfo.address = loginServ.editAddress;
+                $scope.userProfileInfo.email = loginServ.editEmail;
+                $scope.userProfileInfo.password = loginServ.editPassword;
+                $scope.userProfileInfo.currentservice = loginServ.editCurrentService;
+            });
+        } else {
+            alert('sorry, please fill in all fields, to update your profile all fields need to be filled in');
+        }
+        $scope.fname = '';
+        $scope.lname = '';
+        $scope.address = '';
+        $scope.email = '';
+        $scope.password = '';
+        $scope.currentservice = '';
+    };
+});
+"use strict";
+'use strict';
+
+gardenApp.controller('serviceCtrl', function ($scope, serviceSrv) {
+
+    if ($scope.userProfileInfo) {
+        var email = $scope.userProfileInfo.email;
+        var password = $scope.userProfileInfo.password;
+    }
+
+    $scope.addPlan = function (selectedPlan, userId) {
+        alert('you selected the ' + selectedPlan.servname + ' plan, it will be added to your account');
+        serviceSrv.addPlan(selectedPlan.id, userId).then(function (response) {
+            return response;
+        });
+        serviceSrv.refreshUserInfo(email, password).then(function (response) {
+            $scope.userProfileInfo.currentservice = response[0].currentservice;
+            return response;
+        });
+    };
+
+    $scope.getInfo = function () {
+        serviceSrv.planInfo().then(function (response) {
+            $scope.planInfo = response;
+        });
+    };
+
+    $scope.getInfo();
+});
+'use strict';
+
+/**
+ * Created by scott on 1/4/17.
+ */
+
+gardenApp.service('listCustServ', function ($http) {
+
+    // this.getUsers = () => {
+    //     $http({
+    //         method: 'GET',
+    //         url: '/listall'
+    //     }).then(function(response){
+    //         // $scope.originalCustList = response.data;
+    //         return response.data
+    //     })
+    // };
+
+
+    this.serviceStatus = function (customer) {
+        alert('this is from listCust serv ' + customer.fname);
+        $http({
+            method: 'POST',
+            url: '/serviceStatus',
+            data: {
+                customerid: customer.id,
+                customernote: customer.note,
+                servicestatus: customer.servicestatus,
+                customer: customer.fname
+            }
+        }).then(function (response) {
+            console.log('listCustServ response', response);
+            return response;
+        }).catch(function (err) {
+            console.log(err);
+        });
+    };
+});
+'use strict';
+
 gardenApp.service('loginServ', function ($http) {
 
     this.newCust = function (fname, lname, address, email, password) {
@@ -437,6 +496,7 @@ gardenApp.service('loginServ', function ($http) {
     this.editEmail;
     this.editPassword;
     this.editCurrentService;
+
     this.editProfile = function (fname, lname, address, email, password, id, currentservice) {
         this.editFirstName = fname;
         this.editLastName = lname;
