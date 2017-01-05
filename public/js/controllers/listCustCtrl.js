@@ -1,16 +1,16 @@
-gardenApp.controller('listCustCtrl', function($scope, $http, listCustServ){
+gardenApp.controller('listCustCtrl',  ($scope, $http, listCustServ) => {
 
     let getUsers = () => {
         $http({
             method: 'GET',
             url: '/listall'
-        }).then(function(response){
+        }).then( (response) => {
             $scope.originalCustList = response.data;
         })
     };
     getUsers();
 
-    $scope.$watch('customers', function(){
+    $scope.$watch('customers', () => {
        console.log('$scope.customers', $scope.customers);
     });
 
@@ -22,7 +22,7 @@ gardenApp.controller('listCustCtrl', function($scope, $http, listCustServ){
             selectedDayString.push(key);
         }
 
-        $scope.customers = $scope.originalCustList.filter(function(currentVal, index, arr){
+        $scope.customers = $scope.originalCustList.filter( (currentVal, index, arr) => {
             if(day && techselect){
                 if(selectedDayString[0] === currentVal.serviceday && techselect === currentVal.assignedtech ){
                     return currentVal;
@@ -41,7 +41,7 @@ gardenApp.controller('listCustCtrl', function($scope, $http, listCustServ){
         });
     };
 
-    $scope.serviceComplete = function(customer){
+    $scope.serviceComplete = (customer) => {
         customer.servicestatus = 'complete';
         console.log('serviceComplete', customer);
         if(!customer.note){
@@ -52,7 +52,7 @@ gardenApp.controller('listCustCtrl', function($scope, $http, listCustServ){
         }
     };
 
-    $scope.serviceIncomplete = function(customer){
+    $scope.serviceIncomplete = (customer) => {
         customer.servicestatus = 'incomplete';
         console.log('serviceIncomplete', customer);
         if(!customer.note){

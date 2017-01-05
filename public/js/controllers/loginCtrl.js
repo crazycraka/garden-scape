@@ -1,7 +1,7 @@
 gardenApp.controller('loginCtrl', function($scope, $http, loginServ, $rootScope, userInfoFact) {
 
 
-    $scope.newCust = function (fname, lname, address, email, password) {
+    $scope.newCust =  (fname, lname, address, email, password) => {
         if(fname && lname && address && email && password) {
             loginServ.newCust(fname, lname, address, email, password)
                 .then(function (response) {});
@@ -19,7 +19,7 @@ gardenApp.controller('loginCtrl', function($scope, $http, loginServ, $rootScope,
 
     };
 
-    $scope.returningCust = function(userEmail, userPassword){
+    $scope.returningCust = (userEmail, userPassword) => {
         if(userEmail && userPassword){
             loginServ.returningCust(userEmail, userPassword)
                 .then(function(response){
@@ -36,7 +36,7 @@ gardenApp.controller('loginCtrl', function($scope, $http, loginServ, $rootScope,
         $scope.userPassword = '';
     };
 
-    $scope.editProfile = function (fname, lname, address, email, password, id, currentservice) {
+    $scope.editProfile =  (fname, lname, address, email, password, id, currentservice) => {
         if(fname && lname && address && email && password && currentservice) {
             loginServ.editProfile(fname, lname, address, email, password, id, currentservice)
                 .then(function (response) {

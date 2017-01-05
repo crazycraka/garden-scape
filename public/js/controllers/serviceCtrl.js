@@ -1,11 +1,11 @@
-gardenApp.controller('serviceCtrl', function($scope, serviceSrv){
+gardenApp.controller('serviceCtrl', ($scope, serviceSrv) => {
 
 if($scope.userProfileInfo) {
-    var email = $scope.userProfileInfo.email;
-    var password = $scope.userProfileInfo.password;
+    let email = $scope.userProfileInfo.email;
+    let password = $scope.userProfileInfo.password;
 }
 
-    $scope.addPlan = function(selectedPlan, userId){
+    $scope.addPlan = (selectedPlan, userId) => {
         alert('you selected the ' + selectedPlan.servname + ' plan, it will be added to your account');
         serviceSrv.addPlan(selectedPlan.id, userId)
             .then(function(response){
@@ -21,9 +21,9 @@ if($scope.userProfileInfo) {
 
 
 
-    $scope.getInfo = function(){
+    $scope.getInfo = () => {
         serviceSrv.planInfo()
-            .then(function(response){
+            .then( (response) => {
                 $scope.planInfo = response;
             })
     };

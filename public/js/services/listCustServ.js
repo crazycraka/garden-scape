@@ -16,7 +16,7 @@ gardenApp.service('listCustServ', function($http){
 
 
     this.serviceStatus = (customer) => {
-        alert('this is from listCust serv ' + customer.fname);
+        alert('congrats, you logged this service!');
         $http({
             method: 'POST',
             url: '/serviceStatus',
