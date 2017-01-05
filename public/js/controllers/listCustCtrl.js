@@ -63,6 +63,9 @@ gardenApp.controller('listCustCtrl',  ($scope, $http, listCustServ) => {
         }
     };
 
+    $scope.adminCustUpdate = (customer) => {
+        listCustServ.adminCustUpdate(customer);
+    };
 
 //      $scope.initMap = function initMap() {
 // //                var headQuarters = {lat: -25.363, lng: 131.044};

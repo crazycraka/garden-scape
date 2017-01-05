@@ -132,6 +132,10 @@ gardenApp.controller('listCustCtrl', function ($scope, $http, listCustServ) {
         }
     };
 
+    $scope.adminCustUpdate = function (customer) {
+        listCustServ.adminCustUpdate(customer);
+    };
+
     //      $scope.initMap = function initMap() {
     // //                var headQuarters = {lat: -25.363, lng: 131.044};
     //
@@ -463,6 +467,31 @@ gardenApp.service('listCustServ', function ($http) {
             }
         }).then(function (response) {
             console.log('listCustServ response', response);
+            return response;
+        }).catch(function (err) {
+            console.log(err);
+        });
+    };
+
+    this.adminCustUpdate = function (customer) {
+        $http({
+            method: 'POST',
+            url: '/adminCustUpdate',
+            data: {
+                fname: customer.fname,
+                lname: customer.lname,
+                address: customer.address,
+                email: customer.email,
+                currentservice: customer.currentservice,
+                password: customer.password,
+                assignedtech: customer.assignedtech,
+                serviceday: customer.serviceday,
+                servicetime: customer.servicetime,
+                id: customer.id
+            }
+        }).then(function (response) {
+            console.log('response in adminCustUpdate .then', response);
+            alert('update complete');
             return response;
         }).catch(function (err) {
             console.log(err);

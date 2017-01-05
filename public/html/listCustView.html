@@ -2,16 +2,33 @@
 <h1>wahoo, heres the super secret admin page!!!</h1>
 
 
-<input type="text" ng-model="filterCust">
+<input type="text" ng-model="filterCust"><span class="glyphicon glyphicon-search"></span>
 <div ng-repeat="customer in originalCustList | filter: filterCust">
 	<div class="list-all-wrapper">
 		<div class="list-all-container">
-			First name: {{customer.fname}}
-			Last name: {{customer.lname}}
-			Address: {{customer.address}}
-			Email: {{customer.email}}
-			Service: {{customer.currentservice}}
+			<div class="list-all-info">
+				First name: {{customer.fname}}
+				Last name: {{customer.lname}}
+				Address: {{customer.address}}
+				Email: {{customer.email}}
+				Service: {{customer.currentservice}}<br>
+				<div class="list-all-edit-info-wrapper">
+					<div class="list-all-edit-info-container">
+						First name:<input type="text" ng-model="customer.fname">
+						Last name:<input type="text" ng-model="customer.lname">
+						Address:<input type="text" ng-model="customer.address">
+						Email:<input type="text" ng-model="customer.email">
+						Current service:<input type="text" ng-model="customer.currentservice">
+						Password:<input type="password" ng-model="customer.password">
+						Assigned Tech:<input type="text" ng-model="customer.assignedtech">
+						Service Day:<input type="text" ng-model="customer.serviceday">
+						Service Time:<input type="text" ng-model="customer.servicetime">
+					</div>
+				</div>
+			</div>
+			<div class=" list-all-edit-symbol glyphicon glyphicon-pencil"></div>
 		</div>
+		<button ng-click="adminCustUpdate(customer)" class="btn btn-primary">Submit changes</button>
 	</div>
 </div>
 

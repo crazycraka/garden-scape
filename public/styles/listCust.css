@@ -10,6 +10,20 @@
 }
 
 .list-all-container {
+    display: flex;
+    justify-content: space-between;
+    height: auto;
 
+}
 
+.list-all-edit-info-wrapper {
+    display: flex;
+
+}
+
+.list-all-edit-info-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 100px;
+    width: 50%;
 }

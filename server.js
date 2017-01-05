@@ -50,6 +50,7 @@ app.post('/editProfile', mainServCtrl.editProfile);
 app.get('/planInfo', mainServCtrl.planInfo);
 app.post('/addPlan', mainServCtrl.addPlan);
 app.post('/serviceStatus', mainServCtrl.serviceStatus);
+app.post('/adminCustUpdate', mainServCtrl.adminCustUpdate);
 
 
 

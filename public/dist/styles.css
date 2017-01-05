@@ -191,6 +191,20 @@
   border: solid black;
   padding: 10px; }
 
+.list-all-container {
+  display: flex;
+  justify-content: space-between;
+  height: auto; }
+
+.list-all-edit-info-wrapper {
+  display: flex; }
+
+.list-all-edit-info-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 100px;
+  width: 50%; }
+
 .login-wrapper {
   width: 300px;
   height: 450px;

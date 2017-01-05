@@ -33,6 +33,31 @@ gardenApp.service('listCustServ', function($http){
             console.log(err);
         })
 
+    };
+
+    this.adminCustUpdate = (customer) => {
+        $http({
+            method: 'POST',
+            url: '/adminCustUpdate',
+            data: {
+                fname: customer.fname,
+                lname: customer.lname,
+                address: customer.address,
+                email: customer.email,
+                currentservice: customer.currentservice,
+                password: customer.password,
+                assignedtech: customer.assignedtech,
+                serviceday: customer.serviceday,
+                servicetime: customer.servicetime,
+                id: customer.id
+            }
+        }).then( (response) => {
+            console.log('response in adminCustUpdate .then', response);
+            alert('update complete');
+            return response;
+        }).catch( (err) => {
+            console.log(err);
+        })
     }
 
 });
