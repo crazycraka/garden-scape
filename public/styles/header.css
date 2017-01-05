@@ -27,3 +27,9 @@
 .header-right-wrapper {
 
 }
+
+@media (max-width: 350px) {
+    .header-wrapper {
+        min-width: 300px;
+    }
+}

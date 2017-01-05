@@ -27,3 +27,22 @@
     position: absolute;
     bottom: 50px;
 }
+
+.login-reminder-wrapper {
+    min-width: 350px;
+    width: 80%;
+    height: auto;
+    margin:  30px auto;
+    text-align: center;
+    background-color: cadetblue;
+    border-radius: 20px;
+    border: 3px solid black;
+    padding: 20px;
+
+}
+
+.login-container {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+}

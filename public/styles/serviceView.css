@@ -1,9 +1,14 @@
 
 .service-info-wrapper {
+    min-width: 300px;
     width: 80%;
-    height: 200px;
+    min-height: 200px;
+    height: auto;
     border: solid black;
-    margin: auto;
+    margin: 10px auto;
+    border-radius: 20px;
+    background-color: cadetblue;
+    padding: 20px;
 }
 
 .service-info-container {

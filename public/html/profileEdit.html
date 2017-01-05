@@ -2,7 +2,14 @@
 
 
 <div ng-show="!userProfileInfo">
-	<h1>hey there, you might find it more useful to be logged in first</h1>
+	<!--all this is hidden if the user is logged in, this is a gentle reminder to log in first to view this pages content-->
+	<div class="login-reminder-wrapper">
+		<div class="login-reminder-container">
+			<h1>Hey there, this page would be more useful if you logged in first</h1>
+			<p>Thats cause this pages displays info about users that are logged in, but your not logged in, so...that makes it kinda hard to display...</p>
+			<p>But not to fear, all you have to do is log in!</p>
+		</div>
+	</div>
 </div>
 
 <div ng-show="userProfileInfo">

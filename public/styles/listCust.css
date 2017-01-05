@@ -1,18 +1,21 @@
 
 .list-all-wrapper {
     width: 90%;
+    min-width: 220px;
     min-height: 70px;
     height: auto;
     background-color: cadetblue;
-    margin: 5px;
+    margin: 10px auto;
     border: solid black;
     padding: 10px;
+    border-radius: 30px;
 }
 
 .list-all-container {
     display: flex;
     justify-content: space-between;
     height: auto;
+
 
 }
 
@@ -24,6 +27,10 @@
 .list-all-edit-info-container {
     display: flex;
     flex-direction: column;
-    min-width: 100px;
+    min-width: 200px;
     width: 50%;
+}
+
+.filter-cust-search-box {
+    margin: 10px;
 }

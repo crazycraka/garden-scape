@@ -15,6 +15,10 @@
   /*justify-content: space-between;*/
   /*align-items: center;*/ }
 
+@media (max-width: 350px) {
+  .header-wrapper {
+    min-width: 300px; } }
+
 .parallax {
   height: 400px;
   background-position: 50% 50%;
@@ -184,12 +188,14 @@
 
 .list-all-wrapper {
   width: 90%;
+  min-width: 220px;
   min-height: 70px;
   height: auto;
   background-color: cadetblue;
-  margin: 5px;
+  margin: 10px auto;
   border: solid black;
-  padding: 10px; }
+  padding: 10px;
+  border-radius: 30px; }
 
 .list-all-container {
   display: flex;
@@ -202,8 +208,11 @@
 .list-all-edit-info-container {
   display: flex;
   flex-direction: column;
-  min-width: 100px;
+  min-width: 200px;
   width: 50%; }
+
+.filter-cust-search-box {
+  margin: 10px; }
 
 .login-wrapper {
   width: 300px;
@@ -272,6 +281,22 @@
 .edit-button {
   position: absolute;
   bottom: 50px; }
+
+.login-reminder-wrapper {
+  min-width: 350px;
+  width: 80%;
+  height: auto;
+  margin: 30px auto;
+  text-align: center;
+  background-color: cadetblue;
+  border-radius: 20px;
+  border: 3px solid black;
+  padding: 20px; }
+
+.login-container {
+  width: 100%;
+  padding: 20px;
+  text-align: center; }
 
 .route-view {
   padding: 10px;
@@ -387,10 +412,15 @@
   transition: all linear 0.5s; }
 
 .service-info-wrapper {
+  min-width: 300px;
   width: 80%;
-  height: 200px;
+  min-height: 200px;
+  height: auto;
   border: solid black;
-  margin: auto; }
+  margin: 10px auto;
+  border-radius: 20px;
+  background-color: cadetblue;
+  padding: 20px; }
 
 .service-info-container {
   width: 80%; }

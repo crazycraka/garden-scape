@@ -1,11 +1,11 @@
 gardenApp.factory('userInfoFact', function(){
 
-    var userObject = {};
+    let userObject = {};
 
-    var addCurrentUser = function(userData){
+    let addCurrentUser = function(userData){
         userObject = userData;
     };
-    var returnCurrentUser = function(){
+    let returnCurrentUser = function(){
         return userObject;
     };
 

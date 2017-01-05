@@ -1,8 +1,7 @@
 <!--<div ng-controller="listCustCtrl">{{test}} {{customers}}</div>-->
-<h1>wahoo, heres the super secret admin page!!!</h1>
 
 
-<input type="text" ng-model="filterCust"><span class="glyphicon glyphicon-search"></span>
+<input type="text" class="filter-cust-search-box" ng-model="filterCust"><span class="glyphicon glyphicon-search "></span>
 <div ng-repeat="customer in originalCustList | filter: filterCust">
 	<div class="list-all-wrapper">
 		<div class="list-all-container">
@@ -12,7 +11,7 @@
 				Address: {{customer.address}}
 				Email: {{customer.email}}
 				Service: {{customer.currentservice}}<br>
-				<div class="list-all-edit-info-wrapper">
+				<div class="list-all-edit-info-wrapper" ng-show="editCustInfo">
 					<div class="list-all-edit-info-container">
 						First name:<input type="text" ng-model="customer.fname">
 						Last name:<input type="text" ng-model="customer.lname">
@@ -23,12 +22,12 @@
 						Assigned Tech:<input type="text" ng-model="customer.assignedtech">
 						Service Day:<input type="text" ng-model="customer.serviceday">
 						Service Time:<input type="text" ng-model="customer.servicetime">
+						<button ng-click="adminCustUpdate(customer)" class="btn btn-primary">Submit changes</button>
 					</div>
 				</div>
 			</div>
-			<div class=" list-all-edit-symbol glyphicon glyphicon-pencil"></div>
+			<div ng-click="editCustInfo = !editCustInfo" class=" list-all-edit-symbol glyphicon glyphicon-pencil"></div>
 		</div>
-		<button ng-click="adminCustUpdate(customer)" class="btn btn-primary">Submit changes</button>
 	</div>
 </div>
 
